@@ -99,7 +99,7 @@ class Crafttwigimagebase64TwigExtension extends \Twig_Extension
         return $inline ? sprintf('data:image/%s;base64,%s', $asset->getExtension(), base64_encode($binary)) : base64_encode($binary);
     }
 
-    public function thumb64($asset, $dimensions=['width'=>100, 'height'=> 100], $inline = false)
+    public function thumb64($asset, $width=100, $height=100, $inline = false)
     {
         // Make sure it is an asset object
         if (!$asset instanceof Asset) {
@@ -112,9 +112,6 @@ class Crafttwigimagebase64TwigExtension extends \Twig_Extension
             // Die quietly.
             return false;
         }
-
-        $width = $dimensions['width'];
-        $height = $dimensions['height'];
 
         // Get the file.
         $binary = file_get_contents(Craft::$app->getAssets()->getThumbPath($asset, $width, $height));
