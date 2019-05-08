@@ -114,7 +114,7 @@ class Crafttwigimagebase64TwigExtension extends \Twig_Extension
         }
 
         // Get the file.
-        $binary = file_get_contents(Craft::$app->getAssets()->getThumbPath($asset, $width, $height));
+        $binary = file_get_contents(Craft::$app->getAssets()->getAssetUrl($asset, ['width'=>$width, 'height'=>$height], true));
 
         // Return the string.
         return $inline ? sprintf('data:image/%s;base64,%s', $asset->getExtension(), base64_encode($binary)) : base64_encode($binary);
